@@ -1,0 +1,49 @@
+main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    .form-container{
+        min-width: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .input-group{
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+
+    }
+
+    input{
+        padding-inline: 1rem;
+        padding-block: 0.75rem;
+        border-radius: 0.75rem;
+        border: none;
+        outline: none;
+        width: 100%;
+    }
+
+    a{
+        color: #e01063;
+        text-decoration: none;
+    }
+
+    .back-home-link{
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+}

@@ -1,0 +1,552 @@
+// ── Variables (mirrors home.scss / interview.scss theme) ──────────────────────
+$bg-page:        #0d1117;
+$bg-card:        #161b22;
+$bg-panel:       #1c2230;
+$border-color:   #2a3348;
+$text-primary:   #e6edf3;
+$text-muted:     #7d8590;
+$accent:         #ff2d78;
+$accent-alt:     #ff6b9d;
+$severity-medium: #f5a623;
+$severity-low:    #3fb950;
+$font-stack:     system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.landing-page {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $bg-page;
+    color: $text-primary;
+    font-family: $font-stack;
+    display: flex;
+    flex-direction: column;
+}
+
+// ── Nav ─────────────────────────────────────────────────────────────────────
+.landing-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid $border-color;
+
+    &__inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: $text-primary;
+        text-decoration: none;
+    }
+
+    &__mark {
+        width: 30px;
+        height: 30px;
+        border-radius: 0.6rem;
+        background: linear-gradient(135deg, $accent, $accent-alt);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    &__links {
+        display: flex;
+        gap: 1.75rem;
+
+        a {
+            color: $text-muted;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.15s ease;
+
+            &:hover {
+                color: $text-primary;
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    &__login {
+        color: $text-muted;
+        text-decoration: none;
+        font-size: 0.9rem;
+        white-space: nowrap;
+
+        &:hover {
+            color: $text-primary;
+        }
+    }
+}
+
+// ── Hero ────────────────────────────────────────────────────────────────────
+.landing-hero {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3.5rem;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr;
+        padding: 3rem 1.25rem 3.5rem;
+        gap: 2.5rem;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    &__eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: $accent-alt;
+        background: rgba(255, 45, 120, 0.1);
+        border: 1px solid rgba(255, 45, 120, 0.25);
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+    }
+
+    h1 {
+        font-size: 2.75rem;
+        font-weight: 700;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+        margin: 0;
+
+        @media (max-width: 900px) {
+            font-size: 2.1rem;
+        }
+    }
+
+    &__highlight {
+        background: linear-gradient(90deg, $accent, $accent-alt);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    p {
+        color: $text-muted;
+        font-size: 1.02rem;
+        line-height: 1.65;
+        max-width: 480px;
+        margin: 0;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    &__cta {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    &__secondary {
+        color: $text-muted;
+        font-size: 0.88rem;
+        text-decoration: none;
+
+        &:hover {
+            color: $text-primary;
+        }
+    }
+}
+
+// ── Hero preview card (signature element) ──────────────────────────────────
+.landing-preview {
+    background-color: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 20px 50px -20px rgba(255, 45, 120, 0.25);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        color: $text-muted;
+    }
+
+    &__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: $severity-low;
+        box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.2);
+    }
+
+    &__score {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    &__ring {
+        width: 84px;
+        height: 84px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: conic-gradient($accent 0deg 313deg, $bg-panel 313deg 360deg);
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            background-color: $bg-card;
+        }
+    }
+
+    &__ring-value {
+        position: relative;
+        z-index: 1;
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1;
+        color: $text-primary;
+    }
+
+    &__ring-pct {
+        position: relative;
+        z-index: 1;
+        font-size: 0.85rem;
+        line-height: 1;
+        color: $text-muted;
+        margin-left: 2px;
+    }
+
+    &__score-label {
+        margin: 0;
+        font-size: 0.9rem;
+        color: $text-muted;
+    }
+
+    &__score-sub {
+        margin: 0.15rem 0 0;
+        font-weight: 600;
+        color: $text-primary;
+    }
+
+    &__tags {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+    }
+
+    &__tag {
+        font-size: 0.78rem;
+        padding: 0.3rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid $border-color;
+
+        &--medium {
+            color: $severity-medium;
+            border-color: rgba(245, 166, 35, 0.3);
+            background: rgba(245, 166, 35, 0.08);
+        }
+
+        &--low {
+            color: $severity-low;
+            border-color: rgba(63, 185, 80, 0.3);
+            background: rgba(63, 185, 80, 0.08);
+        }
+    }
+
+    &__question {
+        background-color: $bg-panel;
+        border: 1px solid $border-color;
+        border-radius: 0.85rem;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        p {
+            margin: 0;
+            font-size: 0.92rem;
+            color: $text-primary;
+            line-height: 1.5;
+        }
+    }
+
+    &__question-tag {
+        align-self: flex-start;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: $accent-alt;
+    }
+}
+
+// ── Shared section heading ─────────────────────────────────────────────────
+.landing-how,
+.landing-features,
+.landing-testimonials {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem;
+
+    h2 {
+        font-size: 1.9rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 0 0 2.5rem;
+        letter-spacing: -0.01em;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// ── How it works ────────────────────────────────────────────────────────────
+.landing-how {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__card {
+        background-color: $bg-card;
+        border: 1px solid $border-color;
+        border-radius: 1rem;
+        padding: 1.75rem;
+    }
+
+    &__step {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: $accent-alt;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+    }
+
+    h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.05rem;
+    }
+
+    p {
+        margin: 0;
+        color: $text-muted;
+        font-size: 0.92rem;
+        line-height: 1.55;
+    }
+}
+
+// ── Features ────────────────────────────────────────────────────────────────
+.landing-features {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 1.25rem;
+    }
+
+    &__card {
+        background-color: $bg-card;
+        border: 1px solid $border-color;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        transition: border-color 0.15s ease, transform 0.15s ease;
+
+        &:hover {
+            border-color: rgba(255, 45, 120, 0.35);
+            transform: translateY(-2px);
+        }
+    }
+
+    &__icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 0.65rem;
+        background: rgba(255, 45, 120, 0.1);
+        color: $accent-alt;
+        margin-bottom: 1rem;
+    }
+
+    h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+    }
+
+    p {
+        margin: 0;
+        color: $text-muted;
+        font-size: 0.88rem;
+        line-height: 1.55;
+    }
+}
+
+// ── Testimonials ────────────────────────────────────────────────────────────
+.landing-testimonials {
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__card {
+        background-color: $bg-card;
+        border: 1px solid $border-color;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin: 0;
+    }
+
+    blockquote {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: $text-primary;
+    }
+
+    figcaption {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid $border-color;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    &__role {
+        color: $text-muted;
+        font-size: 0.8rem;
+        margin-top: 0.15rem;
+    }
+}
+
+// ── Final CTA ───────────────────────────────────────────────────────────────
+.landing-cta {
+    max-width: 900px;
+    width: 100%;
+    margin: 1rem auto 4rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 45, 120, 0.12), rgba(255, 107, 157, 0.05));
+    border: 1px solid rgba(255, 45, 120, 0.25);
+    border-radius: 1.5rem;
+
+    h2 {
+        margin: 0 0 0.5rem;
+        font-size: 1.8rem;
+        font-weight: 700;
+
+        @media (max-width: 768px) {
+            font-size: 1.4rem;
+        }
+    }
+
+    p {
+        margin: 0 0 1.75rem;
+        color: $text-muted;
+    }
+
+    &__button {
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+}
+
+// ── Footer ──────────────────────────────────────────────────────────────────
+.landing-footer {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid $border-color;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    &__brand {
+        font-weight: 700;
+        color: $text-primary;
+    }
+
+    &__links {
+        display: flex;
+        gap: 1.5rem;
+
+        a {
+            color: $text-muted;
+            text-decoration: none;
+            font-size: 0.85rem;
+
+            &:hover {
+                color: $text-primary;
+            }
+        }
+    }
+}
