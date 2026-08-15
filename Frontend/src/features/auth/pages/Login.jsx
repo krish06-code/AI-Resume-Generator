@@ -9,12 +9,17 @@ const Login = () => {
     const {loading, handleLogin} = useAuth();
     const [password, setpassword] = useState("");
     const [email, setemail] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleLogin(email, password);
-        // Handle login logic here
-        navigate("/dashboard");
+        setError("");
+        try {
+            await handleLogin(email, password);
+            navigate("/dashboard");
+        } catch (err) {
+            setError(err?.response?.data?.message || "Login failed. Please check your credentials and try again.");
+        }
     }
 
     if(loading) {
@@ -28,6 +33,7 @@ const Login = () => {
         <div className="form-container">
             <Link to="/" className="back-home-link">&larr; Back to home</Link>
             <h1>Login</h1>
+            {error && <p className="form-error">{error}</p>}
             <form onSubmit={handleSubmit}>
 
             <div className="input-group">

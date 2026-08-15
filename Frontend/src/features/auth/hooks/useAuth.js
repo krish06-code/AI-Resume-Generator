@@ -8,12 +8,10 @@ export const useAuth = () => {
 
     const handleLogin = async (email, password) => {
         setLoading(true);
-        try{const data = await login({email, password});
-        if(data){
+        try {
+            const data = await login({email, password});
             setUser(data.user);
-        }}catch (error) { 
-            console.error("Login failed:", error);
-        }finally {
+        } finally {
             setLoading(false);
         }
     };
@@ -22,11 +20,7 @@ export const useAuth = () => {
         setLoading(true);
         try {
             const data = await register({username, email, password});
-            if(data){
-                setUser(data.user);
-            }
-        } catch (error) {
-            console.error("Register failed:", error);
+            setUser(data.user);
         } finally {
             setLoading(false);
         }

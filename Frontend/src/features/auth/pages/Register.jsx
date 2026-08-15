@@ -13,11 +13,17 @@ const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        await handleRegister(username, email, password);
-        navigate("/dashboard");
+        setError("");
+        try {
+            await handleRegister(username, email, password);
+            navigate("/dashboard");
+        } catch (err) {
+            setError(err?.response?.data?.message || "Registration failed. Please check your details and try again.");
+        }
       }
 
       if(loading) {
@@ -29,6 +35,7 @@ const Register = () => {
         <div className="form-container">
             <Link to="/" className="back-home-link">&larr; Back to home</Link>
             <h1>Register</h1>
+            {error && <p className="form-error">{error}</p>}
             <form onSubmit={handleSubmit}>
 
             <div className="input-group">
